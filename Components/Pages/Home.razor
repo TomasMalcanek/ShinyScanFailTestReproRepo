@@ -14,11 +14,31 @@ Welcome to your new app.
     {
         if (firstRender)
         {
+            Console.WriteLine("Requesting access");
             await Ble.RequestAccessAsync();
+
+            Console.WriteLine("Starting scan");
             Ble.Scan().Subscribe((result) =>
             {
                 Console.WriteLine(result.Peripheral.Name);
             });
+
+            Console.WriteLine("Scan started");
+
+            await Task.Delay(1000);
+            Console.WriteLine("1 second passed");
+
+            await Task.Delay(1000);
+            Console.WriteLine("2 seconds passed");
+
+            await Task.Delay(1000);
+            Console.WriteLine("3 seconds passed");
+
+            await Task.Delay(1000);
+            Console.WriteLine("4 seconds passed");
+
+            await Task.Delay(1000);
+            Console.WriteLine("5 seconds passed");
         }
     }
 }
