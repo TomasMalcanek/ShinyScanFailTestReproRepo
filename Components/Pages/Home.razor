@@ -1,0 +1,24 @@
+﻿@page "/"
+@using Shiny.BluetoothLE
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+
+@code {
+    [Inject]
+    public required IBleManager Ble { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Ble.RequestAccessAsync();
+            Ble.Scan().Subscribe((result) =>
+            {
+                Console.WriteLine(result.Peripheral.Name);
+            });
+        }
+    }
+}
